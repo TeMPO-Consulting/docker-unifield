@@ -73,6 +73,8 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/8.4/main/postgresql.conf
 
 # Add configuration file to launch
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# Add tmux configuration for docker user
+ADD tmux.conf /home/docker/.tmux.conf
 
 # Open some ports: 22(SSH), 5432(POSTGRESQL)
 EXPOSE 22 5432
