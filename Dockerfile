@@ -1,6 +1,8 @@
 # This is a Dockerfile to create a Unifield Environment on Ubuntu 10.04
 #
 # root password:    unifield
+# docker user:      docker
+# docker password:  docker
 # psql user:        docker
 # psqlpassword:     docker
 #
@@ -32,12 +34,16 @@ RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sou
  apt-get upgrade -y
 
 # Install postgresql, ssh and supervisord (to launch
-RUN apt-get install -y openssh-server postgresql-8.4 supervisor
+RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim-tiny
 
 # Configuration
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
 RUN echo 'root:unifield' |chpasswd # change default root password
+
+# Add special user docker
+RUN useradd docker
+RUN echo "docker:docker" | chpasswd
 
 # Found here: http://docs.docker.io/en/latest/examples/postgresql_service/
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-8.4`` package when it was ``apt-get installed``
