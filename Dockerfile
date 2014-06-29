@@ -44,9 +44,13 @@ RUN echo 'root:unifield' |chpasswd # change default root password
 # Add special user docker
 RUN useradd docker
 RUN echo "docker:docker" | chpasswd
+# Permit docker user to user tmux
+RUN gpasswd -a docker utmp
+# Change docker user default shell
+RUN chsh -s /usr/bin/zsh docker
 
 # Add OpenERP dependancies
-RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson
+RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree
 
 # Found here: http://docs.docker.io/en/latest/examples/postgresql_service/
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-8.4`` package when it was ``apt-get installed``
