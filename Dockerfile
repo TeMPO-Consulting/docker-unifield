@@ -17,6 +17,16 @@ MAINTAINER Olivier Dossmann, olivier+dockerfile@dossmann.net
 #    debconf: unable to initialize frontend: Dialog
 ENV DEBIAN_FRONTEND noninteractive
 
+# Ensure we create the cluster with UTF-8 locale
+# Bug: https://bugs.launchpad.net/ubuntu/+source/lxc/+bug/813398
+RUN locale-gen en_US.UTF-8 && \
+    echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+
+# Set the locale
+ENV LANGUAGE en_US.UTF-8
+ENV LANG en_US:en
+ENV LC_ALL en_US.UTF-8
+
 # Add OVH mirror list to update Ubuntu 10.04 to the last version.
 # WARNING: Use of udev hold and initscripts hold and upstart hold will prevent:
 #    dpkg: error processing udev
