@@ -43,17 +43,18 @@ RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sou
  apt-get update; \
  apt-get upgrade -y
 
-# Install postgresql, ssh and supervisord (to launch
+# Install postgresql, ssh server (access to the container), supervisord (to launch services), 
+#+ tmux (to not open a lot of ssh connections), zsh and vim (to work into the container)
 RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim
 
-# Configuration
+# CONFIGURATION
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
 RUN echo 'root:unifield' |chpasswd # change default root password
 
 # Add special user docker
-RUN useradd -m docker
-RUN echo "docker:docker" | chpasswd
+RUN useradd -m docker # create the home directory (-m option)
+RUN echo "docker:docker" | chpasswd # change default docker password
 # Permit docker user to user tmux
 RUN gpasswd -a docker utmp
 # Change docker user default shell
