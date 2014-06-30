@@ -42,7 +42,7 @@ RUN mkdir -p /var/log/supervisor
 RUN echo 'root:unifield' |chpasswd # change default root password
 
 # Add special user docker
-RUN useradd docker
+RUN useradd -m docker
 RUN echo "docker:docker" | chpasswd
 # Permit docker user to user tmux
 RUN gpasswd -a docker utmp
