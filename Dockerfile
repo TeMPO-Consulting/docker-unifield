@@ -88,8 +88,8 @@ ADD tmux.conf /home/docker/.tmux.conf
 # Add vim configuration
 ADD vimrc /home/docker/.vimrc
 
-# Open some ports: 22(SSH), 5432(POSTGRESQL)
-EXPOSE 22 5432
+# Open some ports: 22(SSH), 5432(POSTGRESQL), 8061(OpenERP Web Client)
+EXPOSE 22 5432 8061
 
 # Add VOLUMEs to allow backup of config, logs and databases
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
