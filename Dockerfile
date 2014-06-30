@@ -34,7 +34,7 @@ RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sou
  apt-get upgrade -y
 
 # Install postgresql, ssh and supervisord (to launch
-RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim-tiny
+RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim
 
 # Configuration
 RUN mkdir -p /var/run/sshd
