@@ -87,6 +87,8 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD tmux.conf /home/docker/.tmux.conf
 # Add vim configuration
 ADD vimrc /home/docker/.vimrc
+# Add zsh configuration
+ADD zshrc /home/docker/.zshrc
 
 # Open some ports: 22(SSH), 5432(POSTGRESQL), 8061(OpenERP Web Client)
 EXPOSE 22 5432 8061
