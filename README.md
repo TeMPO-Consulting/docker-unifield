@@ -41,6 +41,18 @@ And we enter in the container.
 
 To find the right port, you have some solutions.
 
+## Use static ports
+
+When you launch your container, just give ports you want. For previous command that run the container, we can have:
+
+    docker run -d -p :5432 -p :22 -p 8000:8061 --name unifield3 -v /home/olivier/projets/Unifield:/opt/Unifield unifield:latest /usr/bin/supervisord
+
+This follow this rule:
+
+    -p IP:host_port:container_port
+
+So we launch the container with 5432 and 22 static ports and 8061 port is redirected to 8000 one.
+
 ## List ports for each docker container
 
 Just do this:
