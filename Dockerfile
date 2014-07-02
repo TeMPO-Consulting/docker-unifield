@@ -64,6 +64,9 @@ RUN chsh -s /usr/bin/zsh docker
 # Add OpenERP dependancies
 RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree
 
+# Decomment the next line if you want to use Eclipse and X11 capabilities
+#RUN apt-get install -y eclipse
+
 # Found here: http://docs.docker.io/en/latest/examples/postgresql_service/
 # Run the rest of the commands as the ``postgres`` user created by the ``postgres-8.4`` package when it was ``apt-get installed``
 USER postgres

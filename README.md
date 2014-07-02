@@ -87,3 +87,24 @@ Just do this:
 
     docker inspect --format='{{(index (index .NetworkSettings.Ports "5432/tcp") 0).HostPort}}' unifield
 
+# Use X11 capabilities and run Eclipse into the Docker environment
+
+**Before** launching the build of this directory, decomment this line:
+
+    RUN apt-get install -y eclipse
+
+Then:
+
+  * build your docker
+  * run a docker
+  * access it via ssh using this command:
+
+    ssh -X -p 49153 docker@localhost
+
+replace **49153** by the port used by your ssh connection.
+
+Then, in the given SSH prompt, just tape:
+
+    eclipse
+
+and it will launch Eclipse.
