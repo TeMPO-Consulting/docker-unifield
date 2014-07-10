@@ -45,8 +45,8 @@ RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sou
 
 # Install postgresql, ssh server (access to the container), supervisord (to launch services), 
 #+ tmux (to not open a lot of ssh connections), zsh and vim (to work into the container),
-#+ bzr and python-argparse (for MKDB script)
-RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim bzr python-argparse
+#+ bzr and python-argparse (for MKDB script), ipython (for a better Python console)
+RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim bzr python-argparse ipython
 
 # CONFIGURATION
 RUN mkdir -p /var/run/sshd
