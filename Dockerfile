@@ -97,11 +97,6 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/8.4/main/postgresql.conf
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Add tmux configuration for docker user
 ADD tmux.conf /home/docker/.tmux.conf
-# Add vim configuration
-ADD ~/.vimrc /home/docker/.vimrc
-ADD ~/.vim/ /home/docker/.vim
-# Add bash configuration
-ADD ~/.bashrc /home/docker/.bashrc
 
 # Open some ports: 22(SSH), 5432(POSTGRESQL), 8061(OpenERP Web Client)
 EXPOSE 22 5432 8061
