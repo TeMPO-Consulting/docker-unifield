@@ -16,7 +16,7 @@ Then you have to build an image from this repository:
 
 Now you have to run the container. But have a look to an example of what could be done:
 
-    docker run -d -P --name unifield3 -v /home/qt/Development/Unifield:/opt/Unifield unifield:latest /usr/bin/supervisord
+    docker run -d -P --name unifield3 -v /home/olivier/projets/Unifield:/opt/Unifield unifield:latest /usr/bin/supervisord
 
 We know that:
 
@@ -45,7 +45,7 @@ To find the right port, you have some solutions.
 
 When you launch your container, just give ports you want. For previous command that run the container, we can have:
 
-    docker run -d -p :5432 -p :22 -p 8000:8061 --name unifield3 -v /home/qt/Development/Unifield:/opt/Unifield unifield:latest /usr/bin/supervisord
+    docker run -d -p :5432 -p :22 -p 8000:8061 --name unifield3 -v /home/olivier/projets/Unifield:/opt/Unifield unifield:latest /usr/bin/supervisord
 
 This follow this rule:
 
