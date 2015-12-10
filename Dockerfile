@@ -67,10 +67,6 @@ RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxd
 RUN pip install openerp-client-lib==1.0.3
 RUN pip install oerplib
 
-# Dependancies for 7z files
-RUN apt-get install -y build-essential python-dev
-RUN easy_install pylzma
-
 # Decomment the next line if you want to use Eclipse and X11 capabilities
 #RUN apt-get install -y eclipse
 
