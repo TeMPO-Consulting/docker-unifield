@@ -11,7 +11,7 @@
 # use Ubuntu 10.04 image provided by docker.io
 FROM ubuntu:10.04
 
-MAINTAINER Olivier Dossmann, olivier+dockerfile@dossmann.net
+MAINTAINER Quentin THEURET, qt@tempo-consulting.fr
 
 # Get noninteractive frontend for Debian to avoid some problems:
 #    debconf: unable to initialize frontend: Dialog
@@ -46,7 +46,7 @@ RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sou
 # Install postgresql, ssh server (access to the container), supervisord (to launch services), 
 #+ tmux (to not open a lot of ssh connections), zsh and vim (to work into the container),
 #+ bzr and python-argparse (for MKDB script), ipython (for a better Python console)
-RUN apt-get install -y openssh-server postgresql-8.4 supervisor tmux zsh vim bzr python-argparse ipython
+RUN apt-get install -y openssh-server postgresql-8.4 supervisor screen tmux vim bzr python-argparse ipython
 
 # CONFIGURATION
 RUN mkdir -p /var/run/sshd
@@ -59,14 +59,13 @@ RUN echo "docker:docker" | chpasswd # change default docker password
 # Permit docker user to user tmux
 RUN gpasswd -a docker utmp
 # Change docker user default shell
-RUN chsh -s /usr/bin/zsh docker
+#RUN chsh -s /usr/bin/zsh docker
 
 # Add OpenERP dependancies
-RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree
+RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree python-pip
 
-# Dependancies for 7z files
-RUN apt-get install -y build-essential python-dev
-RUN easy_install pylzma
+RUN pip install openerp-client-lib==1.0.3
+RUN pip install oerplib
 
 # Decomment the next line if you want to use Eclipse and X11 capabilities
 #RUN apt-get install -y eclipse
@@ -94,10 +93,6 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/8.4/main/postgresql.conf
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Add tmux configuration for docker user
 ADD tmux.conf /home/docker/.tmux.conf
-# Add vim configuration
-ADD vimrc /home/docker/.vimrc
-# Add zsh configuration
-ADD zshrc /home/docker/.zshrc
 
 # Open some ports: 22(SSH), 5432(POSTGRESQL), 8061(OpenERP Web Client)
 EXPOSE 22 5432 8061
