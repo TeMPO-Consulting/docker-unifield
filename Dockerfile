@@ -59,7 +59,7 @@ RUN echo "docker:docker" | chpasswd # change default docker password
 # Permit docker user to user tmux
 RUN gpasswd -a docker utmp
 # Change docker user default shell
-RUN chsh -s /usr/bin/zsh docker
+RUN chsh -s /bin/bash docker
 
 # Add OpenERP dependancies
 RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree python-pip
