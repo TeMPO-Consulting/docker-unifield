@@ -31,12 +31,12 @@ ENV LC_ALL en_US.UTF-8
 # WARNING: Use of udev hold and initscripts hold and upstart hold will prevent:
 #    dpkg: error processing udev
 #    mount: permission denied
-RUN echo "deb http://mirror.ovh.net/ubuntu lucid main restricted" > /etc/apt/sources.list; \
- echo "deb http://mirror.ovh.net/ubuntu/ lucid-updates main restricted" >> /etc/apt/sources.list; \
- echo "deb http://mirror.ovh.net/ubuntu/ lucid multiverse" >> /etc/apt/sources.list; \
- echo "deb http://mirror.ovh.net/ubuntu/ lucid-updates multiverse" >> /etc/apt/sources.list; \
- echo "deb http://mirror.ovh.net/ubuntu/ lucid universe" >> /etc/apt/sources.list; \
- echo "deb http://mirror.ovh.net/ubuntu/ lucid-updates universe" >> /etc/apt/sources.list; \
+RUN echo "deb http://old-releases.ubuntu.com/ubuntu lucid main restricted" > /etc/apt/sources.list; \
+ echo "deb http://old-releases.ubuntu.com/ubuntu/ lucid-updates main restricted" >> /etc/apt/sources.list; \
+ echo "deb http://old-releases.ubuntu.com/ubuntu/ lucid multiverse" >> /etc/apt/sources.list; \
+ echo "deb http://old-releases.ubuntu.com/ubuntu/ lucid-updates multiverse" >> /etc/apt/sources.list; \
+ echo "deb http://old-releases.ubuntu.com/ubuntu/ lucid universe" >> /etc/apt/sources.list; \
+ echo "deb http://old-releases.ubuntu.com/ubuntu/ lucid-updates universe" >> /etc/apt/sources.list; \
  echo udev hold | dpkg --set-selections; \
  echo initscripts hold | dpkg --set-selections; \
  echo upstart hold | dpkg --set-selections; \
