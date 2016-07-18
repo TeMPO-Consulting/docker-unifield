@@ -46,7 +46,7 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu lucid main restricted" > /et
 # Install postgresql, ssh server (access to the container), supervisord (to launch services), 
 #+ tmux (to not open a lot of ssh connections), zsh and vim (to work into the container),
 #+ bzr and python-argparse (for MKDB script), ipython (for a better Python console)
-RUN apt-get install -y openssh-server postgresql-8.4 supervisor screen tmux vim bzr python-argparse ipython
+RUN apt-get install -y openssh-server postgresql-8.4 supervisor screen tmux vim bzr python-argparse ipython diffstat
 
 # CONFIGURATION
 RUN mkdir -p /var/run/sshd
@@ -62,7 +62,10 @@ RUN gpasswd -a docker utmp
 RUN chsh -s /bin/bash docker
 
 # Add OpenERP dependancies
-RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson python-formencode python-pybabel flashplugin-nonfree python-pip
+RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart \
+                       python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler \
+                       python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson \
+                       python-formencode python-pybabel flashplugin-nonfree python-pip
 
 RUN pip install -q openerp-client-lib==1.0.3
 RUN pip install -q oerplib
