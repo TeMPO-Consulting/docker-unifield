@@ -65,7 +65,7 @@ RUN chsh -s /bin/bash docker
 RUN apt-get install -y python python-psycopg2 python-reportlab python-egenix-mxdatetime python-tz python-pychart \
                        python-pydot python-lxml python-libxslt1 python-vobject python-imaging python-profiler \
                        python-setuptools python-yaml python-ldap python-cherrypy3 python-mako python-simplejson \
-                       python-formencode python-pybabel flashplugin-nonfree python-pip
+                       python-formencode python-pybabel flashplugin-nonfree python-pip wkhtmltopdf
 
 RUN pip install -q openerp-client-lib==1.0.3
 RUN pip install -q oerplib
