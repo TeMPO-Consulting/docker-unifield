@@ -1,0 +1,4 @@
+FROM uf-base
+USER unifield
+ADD unifield/web /opt/unifield/web
+CMD /opt/unifield/web/openerp-web.py --openerp-host=uf-server

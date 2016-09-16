@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  uf-web:
+    build:
+      context: .
+      dockerfile: Dockerfile-web
+    ports:
+     - "8061:8061"
+    depends_on:
+     - uf-server
+  uf-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    ports:
+     - "8069"
+     - "8070"
+     - "8071"
+    depends_on:
+     - db
+    links:
+     - "db:database"
+  db:
+    image: postgres:9.4
+    ports:
+     - "5432"
+    environment:
+     - "POSTGRES_USER=unifield"

@@ -1,0 +1,4 @@
+FROM uf-base
+USER unifield
+ADD unifield/server /opt/unifield/server
+CMD /opt/unifield/server/bin/openerp-server.py --db_host=db

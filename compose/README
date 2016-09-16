@@ -1,0 +1,15 @@
+In this directory is a prototype of how we can ship
+Unifield for Linux using Docker Compose.
+
+The directory unifield needs to be populated with a
+copy of Unifield, like this:
+
+	mkdir unifield
+	bzr checkout --lightweight lp:unifield-server unifield/server
+	bzr checkout --lightweight lp:unifield-web unifield/web
+
+First build uf-base, then let docker-compose take over:
+
+	docker build -f Dockerfile-base -t uf-base .
+	docker-compose up -d --build
+
