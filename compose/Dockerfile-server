@@ -1,4 +1,6 @@
-FROM uf-base
+FROM unifield/base:1
 USER unifield
 ADD unifield/server /opt/unifield/server
-CMD /opt/unifield/server/bin/openerp-server.py --db_host=db
+ADD ./wait-postgres-start /opt/unifield/server/bin
+CMD /opt/unifield/server/bin/wait-postgres-start db && \
+	/opt/unifield/server/bin/openerp-server.py --db_host=db
