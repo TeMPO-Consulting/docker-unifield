@@ -2,13 +2,13 @@ version: '2'
 
 services:
   uf-web:
-    image: unifield/web:2.1-3rc3
+    image: unifield/web:2.1-3
     ports:
      - "8061:8061"
     depends_on:
      - uf-server
   uf-server:
-    image: unifield/server:2.1-3rc3
+    image: unifield/server:2.1-3
     ports:
      - "8069"
      - "8070"
@@ -18,10 +18,11 @@ services:
     links:
      - "db:database"
   db:
-    image: postgres:9.4
+    image: unifield/postgres:8.4
     ports:
      - "5432"
     environment:
-     - "POSTGRES_USER=unifield"
+     - "POSTGRESQL_USER=unifield"
+     - "POSTGRESQL_TRUST=YES"
     volumes:
-     - /var/lib/postgresql/data
+     - /var/lib/postgresql/8.4/main

@@ -8,7 +8,7 @@ fi
 
 for i in `seq 1 15`
 do
-	psql -h $host -q -c 'select 1;' > /dev/null
+	psql -h $host postgres -q -c 'select 1;' > /dev/null
 	if [ $? = 0 ]; then
 		# ok
 		exit 0
