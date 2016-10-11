@@ -10,4 +10,5 @@ simplejson==2.0.9
 six==1.10.0
 egenix-mx-base==3.2.9
 PyYAML==3.11
-python-dateutil
+python-dateutil==2.5.3
+ufload

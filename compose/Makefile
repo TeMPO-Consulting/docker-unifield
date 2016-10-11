@@ -16,8 +16,10 @@ checkout:
 
 build:
 	docker build -f Dockerfile-base -t unifield/base:$(BASEVER) .
-	docker push unifield/base:$(BASEVER)
 	docker build -f Dockerfile-web -t unifield/web:$(VER) .
-	docker push unifield/web:$(VER)
 	docker build -f Dockerfile-server -t unifield/server:$(VER) .
+
+push:
+	docker push unifield/base:$(BASEVER)
+	docker push unifield/web:$(VER)
 	docker push unifield/server:$(VER)
