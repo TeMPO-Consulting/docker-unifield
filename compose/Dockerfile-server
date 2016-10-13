@@ -1,0 +1,8 @@
+FROM unifield/base:1
+USER unifield
+ADD unifield/server /opt/unifield/server
+ADD ./wait-postgres-start /opt/unifield/server/bin
+ADD ./dot-ufload /home/unifield/.ufload
+CMD /opt/unifield/server/bin/wait-postgres-start db && \
+	PYTHONPATH=/opt/unifield/server/bin:/opt/unifield/server/bin/addons python -c 'import updater, osv; from sync_client.sync_client import get_hardware_id; print get_hardware_id()' | tail -1 > /opt/unifield/hwid.txt && \
+	/opt/unifield/server/bin/openerp-server.py --db_host=db

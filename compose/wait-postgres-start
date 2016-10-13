@@ -1,0 +1,21 @@
+#!/bin/sh
+
+host=$1
+if [ -z "$host" ]; then
+	echo "Missing postgres host."
+	exit 1
+fi
+
+for i in `seq 1 15`
+do
+	psql -h $host postgres -q -c 'select 1;' > /dev/null
+	if [ $? = 0 ]; then
+		# ok
+		exit 0
+	fi
+	echo "Postgres not started. Sleeping."
+	sleep 1
+done
+
+echo "Timed out waiting for Postgres."
+exit 1
