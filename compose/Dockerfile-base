@@ -10,7 +10,7 @@ RUN	echo "deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main" > /etc/
 	&& apt-get clean
 
 ADD requirements.txt /opt/unifield/requirements.txt
-RUN pip install -r /opt/unifield/requirements.txt
+RUN pip install --no-cache-dir -r /opt/unifield/requirements.txt
 RUN groupadd -r unifield && useradd -r -g unifield unifield && \
 	chown unifield:unifield /opt/unifield
 

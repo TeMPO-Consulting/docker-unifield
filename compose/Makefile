@@ -7,7 +7,11 @@ BASEVER=1
 help:
 	@echo "targets:"
 	@echo "  checkout: fetch the code into directory unifield"
-	@echo "  build: build and push the Docker images to Docker Hub"
+	@echo "  build: build the Docker images, store them locally"
+	@echo "  push: push the Docker images to Docker Hub"
+	@echo
+	@echo "Add the VER=xxx to the end to checkout tag xxx"
+	@echo "from Bazaar, i.e. make build VER=2.1-3"
 
 checkout:
 	mkdir -p unifield

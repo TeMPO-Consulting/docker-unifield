@@ -11,4 +11,5 @@ six==1.10.0
 egenix-mx-base==3.2.9
 PyYAML==3.11
 python-dateutil==2.5.3
+passlib
 ufload

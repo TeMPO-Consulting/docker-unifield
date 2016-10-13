@@ -10,13 +10,14 @@ services:
   uf-server:
     image: unifield/server:2.1-3
     ports:
-     - "8069"
+     - "8069:8069"
      - "8070"
-     - "8071"
     depends_on:
      - db
     links:
      - "db:database"
+    volumes:
+     - ./uf-server:/uf-server
   db:
     image: unifield/postgres:8.4
     ports:
@@ -25,4 +26,4 @@ services:
      - "POSTGRESQL_USER=unifield"
      - "POSTGRESQL_TRUST=YES"
     volumes:
-     - /var/lib/postgresql/8.4/main
+     - ./postgres-data:/var/lib/postgresql
